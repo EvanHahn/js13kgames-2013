@@ -1,57 +1,65 @@
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
+window.AudioContext = window.AudioContext || window.webkitAudioContext || function() {};
 
-var Sound = MiniClass.extend({
+var playSound = (function() {
 
-	initialize: function(options) {
+	// configs
+	var STEP_TIME = 10;
+	var OSCILLATOR_TYPES = {
+		sine: 0,
+		square: 1,
+		sawtooth: 2,
+		triangle: 3
+	};
 
-		// set up oscillator
-		this.context = new AudioContext;
-		this.oscillator = this.context.createOscillator();
-		this.oscillator.connect(this.context.destination);
+	// make our master context
+	// sadly, there can only be one
+	var context = new AudioContext;
 
-		// set up options
-		this.options = options;
+	return function playSound(options) {
 
-	},
+		// this whole thing is in a try/catch because not everything
+		// supports this stuff
+		try {
 
-	play: function(options) {
+			// make me an oscillator
+			var oscillator = context.createOscillator();
+			oscillator.connect(context.destination);
 
-		// maintain a reference to me
-		var me = this;
-		var options = options || me.options;
+			// parse the options
+			var type = options.type || 0;
+			var from = options.from || 440;
+			var to = options.to || from;
+			var duration = options.duration || 100;
 
-		// type?
-		me.oscillator.type = ({
-			sine: 0,
-			square: 1,
-			sawtooth: 2,
-			triangle: 3
-		})[options.type || 'sine'];
+			// type?
+			// this isn't robust but screw it
+			if (typeof type === 'number')
+				oscillator.type = type;
+			else if (typeof type === 'string')
+				oscillator.type = OSCILLATOR_TYPES[type];
 
-		// from? to? duration?
-		var from = options.from || 440;
-		var to = options.to || from;
-		var duration = options.duration || 100;
+			// start initial frequency
+			oscillator.frequency.value = from;
+			oscillator.noteOn(0);
 
-		// start initial frequency
-		me.oscillator.frequency.value = from;
-		me.oscillator.noteOn(0);
+			// what's our tweening look like?
+			var stepSize = (to - from) / STEP_TIME;
 
-		// what's our tweening look like?
-		var STEP_TIME = 10;
-		var stepSize = (to - from) / STEP_TIME;
+			// do the tweening
+			var interval = setInterval(function() {
+				oscillator.frequency.value += stepSize;
+			}, STEP_TIME);
 
-		// do the tweening
-		var interval = setInterval(function() {
-			me.oscillator.frequency.value += stepSize;
-		}, STEP_TIME);
+			// stop this noise
+			setTimeout(function() {
+				isPlaying = false;
+				oscillator.noteOff(0);
+				oscillator.disconnect();
+				clearInterval(interval);
+			}, duration);
 
-		// stop the tweening
-		setTimeout(function() {
-			me.oscillator.noteOff(0);
-			clearInterval(interval);
-		}, duration);
+		} catch (e) {}
 
-	}
+	};
 
-});
+})();

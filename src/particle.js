@@ -13,6 +13,15 @@ var Particle = Entity.extend({
 			orbit: (random(0, PARTICLE_ORBIT_LIKELIHOOD) === 0)
 		});
 
+		// bloop!
+		var fromFreq = random(200, 400);
+		playSound({
+			type: random(0, 1) * 4,
+			from: fromFreq,
+			to: fromFreq + random(200, 300),
+			duration: 150
+		});
+
 	},
 
 	// each tick

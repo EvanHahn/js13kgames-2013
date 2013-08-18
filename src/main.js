@@ -74,9 +74,9 @@ window.particles = particles;
 // test sounds
 // -----------
 
-new Sound({
+playSound({
 	type: 'triangle',
 	from: 100,
 	to: 300,
 	duration: 800
-}).play();
+});
