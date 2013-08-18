@@ -5,7 +5,7 @@ function floor(n) {
 }
 
 function random(min, max) {
-	return floor(Math.random() * (max - min)) + min;
+	return floor(Math.random() * (max - min)) + floor(min);
 }
 
 function randomColor() {
