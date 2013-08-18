@@ -1,0 +1,1 @@
+var MiniClass=function(){};MiniClass.extend=function(b){b||(b={});var c=this,e=b.initialize,d=function(){e?e.apply(this,arguments):c.apply(this,arguments)},a;for(a in c)"prototype"!=a&&(d[a]=c[a]);for(a in c.prototype)d.prototype[a]=c.prototype[a];for(a in b)d.prototype[a]=b[a];return d}

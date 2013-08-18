@@ -1,0 +1,17 @@
+{
+  "name": "origin-webserver",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "coffee app.coffee"
+  },
+  "dependencies": {
+    "coffee-script": "1.6.x",
+    "express": "3.3.x",
+    "html-minify": "0.3.x"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  }
+}
