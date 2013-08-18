@@ -76,7 +76,7 @@ var Particle = Entity.extend({
 
 		context.outline({
 			fillColor: randomColor(),
-			outlineColor: COLOR_OUTLINE,
+			outlineColor: COLOR_BLACK,
 			outlineWidth: particleSize / 4,
 			path: function(context) {
 				context.arc(x, y, particleSize, 0, twopi, false);
