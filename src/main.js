@@ -11,6 +11,9 @@ var win = window;
 var canvas = document.getElementById('c');
 var context = canvas.getContext('2d');
 
+// when we resize, change screen-proportion variables
+// --------------------------------------------------
+
 var screenSize, centerX, centerY;
 var updateSizes = function() {
 	var width = win.innerWidth;
