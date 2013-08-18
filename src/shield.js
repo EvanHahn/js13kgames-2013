@@ -56,7 +56,6 @@ var Shield = Entity.extend({
 		var holeSize = twopi * this.holePercentage / this.holes;
 		var shieldRadius = this.radius * screenSize;
 		context.outline({
-			fillColor: COLOR_CORE,
 			outlineColor: COLOR_CORE_MEMBRANE,
 			outlineWidth: 2,
 			path: function() {
@@ -70,7 +69,7 @@ var Shield = Entity.extend({
 				outlineColor: COLOR_OUTLINE,
 				outlineWidth: shieldRadius / 15,
 				shadowColor: COLOR_OUTLINE,
-				shadowBlur: 100,
+				shadowBlur: shieldRadius / 10,
 				path: function(context) {
 					context.arc(centerX, centerY, shieldRadius, startAngle, endAngle, false);
 				}
@@ -81,10 +80,8 @@ var Shield = Entity.extend({
 		var heartRadius = Math.abs(Math.sin(Date.now() / 1000)) * (screenSize * HEART_RADIUS) + (screenSize * HEART_RADIUS);
 		context.outline({
 			fillColor: COLOR_HEART,
-			outlineColor: COLOR_HEART,
 			shadowColor: COLOR_HEART,
-			shadowBlur:HEART_RADIUS * screenSize,
-			outlineWidth: HEART_RADIUS * screenSize / 4,
+			shadowBlur: HEART_RADIUS * screenSize * 2,
 			path: function(context) {
 				context.arc(centerX, centerY, heartRadius, 0, twopi * shield.health, false);
 			}

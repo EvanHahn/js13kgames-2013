@@ -58,8 +58,8 @@ var Particle = Entity.extend({
 			if (destroyMe) {
 				Sound.play({
 					type: random(0, 1) * 4,
-					from: 600,
-					to: 800,
+					from: random(900, 1000),
+					to: random(1200, 1300),
 					duration: 150
 				});
 			}
