@@ -1,60 +1,57 @@
-var Sound;
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-try {
+var Sound = MiniClass.extend({
 
-	window.AudioContext = window.AudioContext || window.webkitAudioContext;
+	initialize: function(options) {
 
-	Sound = MiniClass.extend({
+		// set up oscillator
+		this.context = new AudioContext;
+		this.oscillator = this.context.createOscillator();
+		this.oscillator.connect(this.context.destination);
 
-		initialize: function(type) {
-			this.context = new AudioContext;
-			this.oscillator = this.context.createOscillator();
-			this.oscillator.connect(this.context.destination);
-			this.oscillator.type = ({
-				sine: 0,
-				square: 1,
-				sawtooth: 2,
-				triangle: 3
-			})[type];
-		},
+		// set up options
+		this.options = options;
 
-		start: function() {
-			this.oscillator.noteOn(0);
-			return this;
-		},
+	},
 
-		stop: function() {
-			this.oscillator.noteOff(0);
-			return this;
-		},
+	play: function(options) {
 
-		tween: function(options) {
-			var STEP_TIME = 10;
-			var me = this;
-			var stepSize = (options.to - options.from) / STEP_TIME;
-			me.oscillator.frequency.value = options.from;
-			var interval = setInterval(function() {
-				me.oscillator.frequency.value += stepSize;
-			}, STEP_TIME);
-			setTimeout(function() {
-				me.stop();
-				options.then();
-			}, options.duration);
-		}
+		// maintain a reference to me
+		var me = this;
+		var options = options || me.options;
 
-	});
+		// type?
+		me.oscillator.type = ({
+			sine: 0,
+			square: 1,
+			sawtooth: 2,
+			triangle: 3
+		})[options.type || 'sine'];
 
-	Sound.isSupported = true;
+		// from? to? duration?
+		var from = options.from || 440;
+		var to = options.to || from;
+		var duration = options.duration || 100;
 
-} catch (e) {
+		// start initial frequency
+		me.oscillator.frequency.value = from;
+		me.oscillator.noteOn(0);
 
-	Sound = MiniClass.extend({
-		initialize: noop,
-		start: noop,
-		stop: noop,
-		tween: noop
-	});
+		// what's our tweening look like?
+		var STEP_TIME = 10;
+		var stepSize = (to - from) / STEP_TIME;
 
-	Sound.isSupported = false;
+		// do the tweening
+		var interval = setInterval(function() {
+			me.oscillator.frequency.value += stepSize;
+		}, STEP_TIME);
 
-}
+		// stop the tweening
+		setTimeout(function() {
+			me.oscillator.noteOff(0);
+			clearInterval(interval);
+		}, duration);
+
+	}
+
+});

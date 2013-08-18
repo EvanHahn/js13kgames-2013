@@ -74,12 +74,9 @@ window.particles = particles;
 // test sounds
 // -----------
 
-var introBloop = new Sound('square');
-introBloop.start().tween({
+new Sound({
+	type: 'triangle',
 	from: 100,
 	to: 300,
-	duration: 800,
-	then: function() {
-		introBloop.stop();
-	}
-});
+	duration: 800
+}).play();
