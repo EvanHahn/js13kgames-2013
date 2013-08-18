@@ -44,6 +44,8 @@ try {
 
 	});
 
+	Sound.isSupported = true;
+
 } catch (e) {
 
 	Sound = MiniClass.extend({
@@ -52,5 +54,7 @@ try {
 		stop: noop,
 		tween: noop
 	});
+
+	Sound.isSupported = false;
 
 }
