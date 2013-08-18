@@ -15,7 +15,7 @@ var Particle = Entity.extend({
 
 		// bloop!
 		var fromFreq = random(200, 400);
-		playSound({
+		Sound.play({
 			type: random(0, 1) * 4,
 			from: fromFreq,
 			to: fromFreq + random(200, 300),

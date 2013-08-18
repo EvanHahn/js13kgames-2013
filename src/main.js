@@ -74,7 +74,7 @@ window.particles = particles;
 // test sounds
 // -----------
 
-playSound({
+Sound.play({
 	type: 'triangle',
 	from: 100,
 	to: 300,

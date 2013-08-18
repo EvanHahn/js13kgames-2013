@@ -1,6 +1,11 @@
-window.AudioContext = window.AudioContext || window.webkitAudioContext || function() {};
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-var playSound = (function() {
+var Sound = {
+	muted: false,
+	isSupported: !!window.AudioContext
+};
+
+Sound.play = (function() {
 
 	// configs
 	var STEP_TIME = 10;
@@ -13,9 +18,15 @@ var playSound = (function() {
 
 	// make our master context
 	// sadly, there can only be one
-	var context = new AudioContext;
+	var context;
+	if (Sound.isSupported)
+		context = new AudioContext;
 
 	return function playSound(options) {
+
+		// bail, bail!
+		if (Sound.muted || (!Sound.isSupported))
+			return;
 
 		// this whole thing is in a try/catch because not everything
 		// supports this stuff
