@@ -36,11 +36,11 @@ setBackgroundColor(COLOR_BACKGROUND);
 // --------------
 
 var lastUpdate = new Date;
-function update(timestamp) {
+function update(now) {
 
 	// what's dt?
-	var dt = timestamp - lastUpdate;
-	lastUpdate = timestamp;
+	var dt = now - lastUpdate;
+	lastUpdate = now;
 
 	// drop new particles?
 	if ((random(0, 100) === 0) && (shield.health > 0)) {
@@ -68,15 +68,3 @@ function update(timestamp) {
 }
 
 update();
-
-window.particles = particles;
-
-// test sounds
-// -----------
-
-Sound.play({
-	type: 'triangle',
-	from: 100,
-	to: 300,
-	duration: 800
-});

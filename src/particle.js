@@ -55,6 +55,14 @@ var Particle = Entity.extend({
 			}
 			normalized %= twopi;
 			destroyMe = normalized > (twopi * shield.holePercentage / shield.holes);
+			if (destroyMe) {
+				Sound.play({
+					type: random(0, 1) * 4,
+					from: 600,
+					to: 800,
+					duration: 150
+				});
+			}
 		}
 
 		// should I be destroyed?
@@ -75,10 +83,11 @@ var Particle = Entity.extend({
 		var x = centerX + (Math.cos(this.direction) * (this.distance * screenSize))
 		var y = centerY - (Math.sin(this.direction) * (this.distance * screenSize))
 
+		var color = randomColor();
 		context.outline({
-			fillColor: randomColor(),
-			outlineColor: COLOR_BLACK,
-			outlineWidth: particleSize / 4,
+			fillColor: color,
+			shadowColor: color,
+			shadowBlur: particleSize * 1.5,
 			path: function(context) {
 				context.arc(x, y, particleSize, 0, twopi, false);
 			}

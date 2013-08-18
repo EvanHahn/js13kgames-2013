@@ -42,9 +42,6 @@ var Shield = Entity.extend({
 		if (this.rotationSpeed)
 			this.direction += this.rotationSpeed * dt;
 
-		// pulse the shield
-		this.radius += Math.sin(Date.now() / 1000) / 10000;
-
 	},
 
 	// draw me
@@ -72,6 +69,8 @@ var Shield = Entity.extend({
 			context.outline({
 				outlineColor: COLOR_OUTLINE,
 				outlineWidth: shieldRadius / 15,
+				shadowColor: COLOR_OUTLINE,
+				shadowBlur: 100,
 				path: function(context) {
 					context.arc(centerX, centerY, shieldRadius, startAngle, endAngle, false);
 				}
@@ -83,6 +82,8 @@ var Shield = Entity.extend({
 		context.outline({
 			fillColor: COLOR_HEART,
 			outlineColor: COLOR_HEART,
+			shadowColor: COLOR_HEART,
+			shadowBlur:HEART_RADIUS * screenSize,
 			outlineWidth: HEART_RADIUS * screenSize / 4,
 			path: function(context) {
 				context.arc(centerX, centerY, heartRadius, 0, twopi * shield.health, false);

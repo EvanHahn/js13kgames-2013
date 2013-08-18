@@ -21,12 +21,14 @@ extend(CanvasRenderingContext2D.prototype, {
 		}
 
 		// do outline
-		this.strokeStyle = options.outlineColor;
-		this.lineWidth = options.outlineWidth;
-		this.beginPath();
-		options.path.call(this, this);
-		this.stroke();
-		this.closePath();
+		if (options.outlineColor) {
+			this.strokeStyle = options.outlineColor;
+			this.lineWidth = options.outlineWidth;
+			this.beginPath();
+			options.path.call(this, this);
+			this.stroke();
+			this.closePath();
+		}
 
 	}
 
