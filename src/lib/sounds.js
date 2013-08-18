@@ -16,6 +16,9 @@ Sound.play = (function() {
 		triangle: 3
 	};
 
+	// make "real audio" contexts too
+	var audios = [];
+
 	// make our master context
 	// sadly, there can only be one
 	var context;
@@ -25,12 +28,35 @@ Sound.play = (function() {
 	return function playSound(options) {
 
 		// bail, bail!
-		if (Sound.muted || (!Sound.isSupported))
+		if (Sound.muted)
 			return;
 
 		// this whole thing is in a try/catch because not everything
 		// supports this stuff
 		try {
+
+			// if it's a string, let's just run that file
+			if (typeof options === 'string') {
+
+				// find an available stream
+				var stream = audios.filter(function(audio) {
+					return audio.paused == true;
+				})[0];
+
+				// add a stream if we don't have one
+				if (!stream) {
+					stream = new Audio;
+					audios.push(stream);
+				}
+
+				// play it
+				stream.volume = 1;
+				stream.src = options;
+				stream.play();
+
+				return;
+
+			}
 
 			// make me an oscillator
 			var oscillator = context.createOscillator();

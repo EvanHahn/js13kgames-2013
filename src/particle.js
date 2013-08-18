@@ -44,6 +44,7 @@ var Particle = Entity.extend({
 			setTimeout(function() {
 				setBackgroundColor(COLOR_BACKGROUND);
 			}, 100);
+			Sound.play(BOOM_DATA);
 		}
 
 		// if I hit the shield...
