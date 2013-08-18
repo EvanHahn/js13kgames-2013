@@ -80,7 +80,7 @@ Sound.play = (function() {
 			oscillator.noteOn(0);
 
 			// what's our tweening look like?
-			var stepSize = (to - from) / STEP_TIME;
+			var stepSize = (to - from) * STEP_TIME / duration;
 
 			// do the tweening
 			var interval = setInterval(function() {
