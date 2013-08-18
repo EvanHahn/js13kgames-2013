@@ -8,8 +8,7 @@ var particles = [];
 var points = 0;
 
 var win = window;
-var doc = document;
-var canvas = doc.getElementById('c');
+var canvas = document.getElementById('c');
 var context = canvas.getContext('2d');
 
 var screenSize, centerX, centerY;
