@@ -37,8 +37,14 @@ var Shield = Entity.extend({
 
 	// each tick
 	update: function(dt) {
+
+		// rotate
 		if (this.rotationSpeed)
 			this.direction += this.rotationSpeed * dt;
+
+		// pulse the shield
+		this.radius += Math.sin(Date.now() / 1000) / 10000;
+
 	},
 
 	// draw me
