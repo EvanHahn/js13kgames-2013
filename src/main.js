@@ -273,3 +273,16 @@ function update(timestamp) {
 update();
 
 window.particles = particles;
+
+// test sounds
+// -----------
+
+var introBloop = new Sound('square');
+introBloop.start().tween({
+	from: 100,
+	to: 300,
+	duration: 800,
+	then: function() {
+		introBloop.stop();
+	}
+});
