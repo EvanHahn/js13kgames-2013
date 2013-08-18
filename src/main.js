@@ -83,28 +83,27 @@ var Shield = Entity.extend({
 		for (var i = 0; i < this.holes; i ++) {
 			var startAngle = this.direction + (i * (solidSize + holeSize));
 			var endAngle = startAngle + solidSize;
-			context.fillStyle = COLOR_SHIELD;
-			context.beginPath();
-			context.arc(centerX, centerY, shieldRadius, startAngle, endAngle, false);
-			context.fill();
-			context.strokeStyle = COLOR_OUTLINE;
-			context.lineWidth = shieldRadius / 15;
-			context.beginPath();
-			context.arc(centerX, centerY, shieldRadius, startAngle, endAngle, false);
-			context.stroke();
+			context.outline({
+				fillColor: COLOR_SHIELD,
+				outlineColor: COLOR_OUTLINE,
+				outlineWidth: shieldRadius / 15,
+				path: function(context) {
+					context.arc(centerX, centerY, shieldRadius, startAngle, endAngle, false);
+				}
+			});
 		}
 
 		// heart
 		var heartRadius = Math.abs(Math.sin(Date.now() / 1000)) * (screenSize * HEART_RADIUS) + (screenSize * .02);
-		context.fillStyle = COLOR_HEART;
-		context.beginPath();
-		context.arc(centerX, centerY, heartRadius, 0, twopi * this.health, false);
-		context.fill();
-		context.strokeStyle = COLOR_OUTLINE;
-		context.lineWidth = HEART_RADIUS * screenSize / 2;
-		context.beginPath();
-		context.arc(centerX, centerY, heartRadius, 0, twopi * this.health, false);
-		context.stroke();
+
+		context.outline({
+			fillColor: COLOR_HEART,
+			outlineColor: COLOR_OUTLINE,
+			outlineWidth: HEART_RADIUS * screenSize / 2,
+			path: function(context) {
+				context.arc(centerX, centerY, heartRadius, 0, twopi * shield.health, false);
+			}
+		});
 
 	}
 
@@ -177,15 +176,14 @@ var Particle = Entity.extend({
 		var x = centerX + (Math.cos(this.direction) * (this.distance * screenSize))
 		var y = centerY - (Math.sin(this.direction) * (this.distance * screenSize))
 
-		context.fillStyle = randomColor();
-		context.beginPath();
-		context.arc(x, y, particleSize, 0, twopi, false);
-		context.fill();
-		context.strokeStyle = COLOR_OUTLINE;
-		context.lineWidth = particleSize / 4;
-		context.beginPath();
-		context.arc(x, y, particleSize, 0, twopi, false);
-		context.stroke();
+		context.outline({
+			fillColor: randomColor(),
+			outlineColor: COLOR_OUTLINE,
+			outlineWidth: particleSize / 4,
+			path: function(context) {
+				context.arc(x, y, particleSize, 0, twopi, false);
+			}
+		});
 
 	}
 
