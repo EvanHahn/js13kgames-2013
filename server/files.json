@@ -6,6 +6,7 @@
 		"../src/vendor/miniclass.js",
 		"../src/vendor/extend.js",
 		"../src/lib/util.js",
+		"../src/lib/color.js",
 		"../src/lib/canvas_extensions.js",
 		"../src/lib/sounds.js",
 		"../src/lib/entity.js",
