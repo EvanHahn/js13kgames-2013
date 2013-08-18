@@ -1,0 +1,12 @@
+{
+	"htmls": ["../src/index.html"],
+	"stylesheets": ["../src/the.css"],
+	"javascripts": [
+		"../src/vendor/miniclass.js",
+		"../src/vendor/extend.js",
+		"../src/lib/sounds.js",
+		"../src/lib/entity.js",
+		"../src/config.js",
+		"../src/main.js"
+	]
+}

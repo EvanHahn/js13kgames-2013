@@ -26,18 +26,6 @@ function setBackgroundColor(color) {
 // classes
 // -------
 
-var Entity = MiniClass.extend({
-
-	initialize: function() {
-		this.destroyed = false;
-	},
-
-	destroy: function() {
-		this.destroyed = true;
-	}
-
-});
-
 var Shield = Entity.extend({
 
 	// constructor
@@ -198,7 +186,7 @@ var Particle = Entity.extend({
 		context.beginPath();
 		context.arc(x, y, particleSize, 0, twopi, false);
 		context.stroke();
-	
+
 	}
 
 });

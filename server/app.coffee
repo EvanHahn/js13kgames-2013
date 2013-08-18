@@ -1,13 +1,3 @@
-HTMLS = ['../src/index.html']
-STYLESHEETS = ['../src/the.css']
-JAVASCRIPTS = [
-  '../src/vendor/miniclass.js'
-  '../src/vendor/extend.js'
-  '../src/lib/sounds.js'
-  '../src/config.js'
-  '../src/main.js'
-]
-
 express = require 'express'
 fs = require 'fs'
 minify = (require 'html-minify').minify
@@ -17,18 +7,21 @@ app = express()
 app.set 'port', process.env.PORT or 8000
 
 buildHTML = ->
+
+  files = JSON.parse(fs.readFileSync('files.json', 'utf8'))
+
   css = ''
-  STYLESHEETS.forEach (src) ->
+  files.stylesheets.forEach (src) ->
     contents = fs.readFileSync(src, 'utf8')
     css += "\n\n#{contents}\n\n"
   css = "<style>#{css}</style>"
   js = ''
-  JAVASCRIPTS.forEach (src) ->
+  files.javascripts.forEach (src) ->
     contents = fs.readFileSync(src, 'utf8')
     js += "\n\n;#{contents}\n\n;\n"
   js = "<script>(function() { #{js} })();</script>"
   body = ''
-  HTMLS.forEach (src) ->
+  files.htmls.forEach (src) ->
     contents = fs.readFileSync(src, 'utf8')
     body += contents
   """<!DOCTYPE html>
