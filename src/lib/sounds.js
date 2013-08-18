@@ -46,4 +46,11 @@ try {
 
 } catch (e) {
 
+	Sound = MiniClass.extend({
+		initialize: noop,
+		start: noop,
+		stop: noop,
+		tween: noop
+	});
+
 }
