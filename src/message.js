@@ -38,6 +38,7 @@ var Message = Entity.extend({
 		context.shadowBlur = 50;
 		context.shadowColor = 'rgb(' + this.outlineColor + ')';
 		context.strokeStyle = 'rgba(' + this.outlineColor + ', ' + this.alpha + ')';
+		context.lineWidth = MESSAGE_OUTLINE_SIZE * screenSize;
 		context.strokeText(this.message, centerX, centerY - this.offset);
 		context.fillText(this.message, centerX, centerY - this.offset);
 	}

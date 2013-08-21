@@ -23,8 +23,9 @@ var SHIELD_RADIUS = .25;
 var SHIELD_INITIAL_SPEED = .002;
 var SHIELD_SPEED_STEP = .00001;
 
-var MESSAGE_SIZE = .2; // as % of screen size
+var MESSAGE_SIZE = .1; // as % of screen size
 var MESSAGE_FONT = 'Impact, sans-serif';
+var MESSAGE_OUTLINE_SIZE = .01;
 var MESSAGE_FADE_IN_SPEED = .005;
 var MESSAGE_OFFSET_SPEED = .0001;
 
