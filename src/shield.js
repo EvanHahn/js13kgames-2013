@@ -14,15 +14,16 @@ var Shield = Entity.extend({
 			holePercentage: SHIELD_HOLE_PERCENTAGE,
 			radius: SHIELD_RADIUS,
 			direction: 0,
+			speed: SHIELD_INITIAL_SPEED,
 			rotationSpeed: 0
 		});
 
 		// listen to that keyboard
 		addEventListener('keydown', function(evt) {
 			if (evt.keyCode === KEYCODE_LEFT) {
-				me.rotationSpeed = -SHIELD_SPEED;
+				me.rotationSpeed = -me.speed;
 			} else if (evt.keyCode === KEYCODE_RIGHT) {
-				me.rotationSpeed = SHIELD_SPEED;
+				me.rotationSpeed = me.speed;
 			}
 		});
 		addEventListener('keyup', function(evt) {

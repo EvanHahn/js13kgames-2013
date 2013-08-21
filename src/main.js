@@ -43,8 +43,10 @@ function update(now) {
 	lastUpdate = now;
 
 	// drop new particles?
-	if ((random(0, 100) === 0) && (shield.health > 0)) {
+	if ((random(1, PARTICLE_ORBIT_LIKELIHOOD) === 1) && (shield.health > 0)) {
 		particles.push(new Particle);
+		Particle.speed += PARTICLE_SPEED_STEP;
+		shield.speed += SHIELD_SPEED_STEP;
 	}
 
 	// clear canvas
