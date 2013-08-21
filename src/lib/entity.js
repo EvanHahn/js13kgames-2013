@@ -6,6 +6,10 @@ var Entity = MiniClass.extend({
 
 	destroy: function() {
 		this.destroyed = true;
-	}
+	},
+
+	update: noop,
+
+	draw: noop
 
 });

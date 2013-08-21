@@ -15,7 +15,8 @@ var Shield = Entity.extend({
 			radius: SHIELD_RADIUS,
 			direction: 0,
 			speed: SHIELD_INITIAL_SPEED,
-			rotationSpeed: 0
+			rotationSpeed: 0,
+			combo: 0
 		});
 
 		// listen to that keyboard

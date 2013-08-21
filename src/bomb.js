@@ -42,6 +42,8 @@ var Bomb = Entity.extend({
 			shield.health -= BOMB_DAMAGE;
 			destroyMe = true;
 			Sound.play(BOOM_DATA);
+			pool.add(new Message('AW SHIT', '255, 0, 0'));
+			shield.combo = 0;
 		}
 
 		// if I hit the shield...
@@ -59,6 +61,10 @@ var Bomb = Entity.extend({
 					to: random(1200, 1300),
 					duration: 150
 				});
+				shield.combo ++;
+				if ((shield.combo % 3) === 0) {
+					pool.add(new Message(shield.combo + ' COMBO', '255, 0, 255'));
+				}
 			}
 		}
 
