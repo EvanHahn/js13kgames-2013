@@ -43,10 +43,10 @@ function update(now) {
 	var dt = now - lastUpdate;
 	lastUpdate = now;
 
-	// drop new particles?
-	if ((random(1, PARTICLE_ORBIT_LIKELIHOOD) === 1) && (shield.health > 0)) {
-		pool.add(new Particle);
-		Particle.speed += PARTICLE_SPEED_STEP;
+	// drop new bombs?
+	if ((random(1, BOMB_ORBIT_LIKELIHOOD) === 1) && (shield.health > 0)) {
+		pool.add(new Bomb);
+		Bomb.speed += BOMB_SPEED_STEP;
 		shield.speed += SHIELD_SPEED_STEP;
 	}
 

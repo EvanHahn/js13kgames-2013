@@ -8,12 +8,12 @@ var COLOR_CORE = '#111111';
 var COLOR_CORE_MEMBRANE = COLOR_SHIELD;
 var COLOR_OUTLINE = COLOR_WHITE;
 
-var PARTICLE_RADIUS = .03; // as % of scren size
-var PARTICLE_INITIAL_SPEED = .0001; // as % of scren size
-var PARTICLE_SPEED_STEP = .000001;
-var PARTICLE_ORBIT_SPEED = .0005;
-var PARTICLE_DAMAGE = .05;
-var PARTICLE_ORBIT_LIKELIHOOD = 100; // 1 in X chance for this to happen
+var BOMB_RADIUS = .03; // as % of scren size
+var BOMB_INITIAL_SPEED = .0001; // as % of scren size
+var BOMB_SPEED_STEP = .000001;
+var BOMB_ORBIT_SPEED = .0005;
+var BOMB_DAMAGE = .05;
+var BOMB_ORBIT_LIKELIHOOD = 100; // 1 in X chance for this to happen
 
 var HEART_RADIUS = .04; // as % of screen size, fluctuates
 var SHIELD_HEALTH = 1;

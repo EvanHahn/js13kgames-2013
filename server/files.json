@@ -13,7 +13,7 @@
 		"../src/assets/boom-data.js",
 		"../src/config.js",
 		"../src/shield.js",
-		"../src/particle.js",
+		"../src/bomb.js",
 		"../src/main.js"
 	]
 }

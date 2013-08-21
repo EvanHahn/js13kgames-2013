@@ -1,4 +1,4 @@
-var Particle = Entity.extend({
+var Bomb = Entity.extend({
 
 	// constructor
 	initialize: function() {
@@ -10,8 +10,8 @@ var Particle = Entity.extend({
 		extend(this, {
 			direction: Math.random() * twopi,
 			distance: .75,
-			orbit: (random(0, PARTICLE_ORBIT_LIKELIHOOD) === 0),
-			speed: Particle.speed
+			orbit: (random(0, BOMB_ORBIT_LIKELIHOOD) === 0),
+			speed: Bomb.speed
 		});
 
 		// bloop!
@@ -31,7 +31,7 @@ var Particle = Entity.extend({
 		// move me
 		this.distance -= (this.speed * dt);
 		if (this.orbit) {
-			this.direction = (this.direction - (PARTICLE_ORBIT_SPEED * dt)) % twopi;
+			this.direction = (this.direction - (BOMB_ORBIT_SPEED * dt)) % twopi;
 		}
 
 		// we'll decide whether I should be destroyed
@@ -39,7 +39,7 @@ var Particle = Entity.extend({
 
 		// if I'm in the heart...
 		if (this.distance < 0) {
-			shield.health -= PARTICLE_DAMAGE;
+			shield.health -= BOMB_DAMAGE;
 			destroyMe = true;
 			// setBackgroundColor(COLOR_WHITE);
 			setTimeout(function() {
@@ -49,7 +49,7 @@ var Particle = Entity.extend({
 		}
 
 		// if I hit the shield...
-		else if ((Math.abs(this.distance - shield.radius) < PARTICLE_RADIUS) && (shield.health > 0)) {
+		else if ((Math.abs(this.distance - shield.radius) < BOMB_RADIUS) && (shield.health > 0)) {
 			var normalized = this.direction + shield.direction;
 			while (normalized < 0) {
 				normalized += twopi;
@@ -79,7 +79,7 @@ var Particle = Entity.extend({
 	// draw me
 	draw: function(context) {
 
-		var particleSize = PARTICLE_RADIUS * screenSize;
+		var particleSize = BOMB_RADIUS * screenSize;
 
 		var x = centerX + (Math.cos(this.direction) * (this.distance * screenSize))
 		var y = centerY - (Math.sin(this.direction) * (this.distance * screenSize))
@@ -98,4 +98,4 @@ var Particle = Entity.extend({
 
 });
 
-Particle.speed = PARTICLE_INITIAL_SPEED;
+Bomb.speed = BOMB_INITIAL_SPEED;
