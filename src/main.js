@@ -62,3 +62,8 @@ function update(now) {
 }
 
 update();
+
+// show a "go go go", which we have to delay for some reason
+setTimeout(function() {
+	pool.add(new Message('GO GO GO', '0, 0, 0'));
+}, 10);
