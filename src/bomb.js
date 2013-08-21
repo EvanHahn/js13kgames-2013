@@ -41,9 +41,6 @@ var Bomb = Entity.extend({
 		if (this.distance < 0) {
 			shield.health -= BOMB_DAMAGE;
 			destroyMe = true;
-			setTimeout(function() {
-				setBackgroundColor(COLOR_BACKGROUND);
-			}, 100);
 			Sound.play(BOOM_DATA);
 		}
 
