@@ -1,4 +1,5 @@
 var Particle = Entity.extend({
+
 	// constructor
 	initialize: function() {
 
