@@ -9,6 +9,7 @@
 		"../src/lib/canvas_extensions.js",
 		"../src/lib/sounds.js",
 		"../src/lib/entity.js",
+		"../src/lib/pool.js",
 		"../src/assets/boom-data.js",
 		"../src/config.js",
 		"../src/shield.js",

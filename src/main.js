@@ -1,9 +1,10 @@
 // initial variables
 // -----------------
 
-var shield = new Shield;
+var pool = new Pool;
 
-var particles = [];
+var shield = new Shield;
+pool.add(shield);
 
 var points = 0;
 
@@ -44,7 +45,7 @@ function update(now) {
 
 	// drop new particles?
 	if ((random(1, PARTICLE_ORBIT_LIKELIHOOD) === 1) && (shield.health > 0)) {
-		particles.push(new Particle);
+		pool.add(new Particle);
 		Particle.speed += PARTICLE_SPEED_STEP;
 		shield.speed += SHIELD_SPEED_STEP;
 	}
@@ -53,16 +54,7 @@ function update(now) {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
 	// update everyone
-	shield.update(dt);
-	shield.draw(context);
-	var particle;
-	for (var i = 0, len = particles.length; i < len; i ++) {
-		particle = particles[i];
-		if ((particle) && (!particle.destroyed)) {
-			particle.update(dt);
-			particle.draw(context);
-		}
-	}
+	pool.updateAll(dt, context);
 
 	// start again
 	requestAnimationFrame(update);
