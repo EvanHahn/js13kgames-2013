@@ -15,12 +15,11 @@ var Bomb = Entity.extend({
 		});
 
 		// bloop!
-		var fromFreq = random(200, 400);
 		Sound.play({
-			type: random(0, 1) * 4,
-			from: fromFreq,
-			to: fromFreq + random(200, 300),
-			duration: 150
+			type: 'sine',
+			from: random(500, 2000),
+			to: 1,
+			duration: 300
 		});
 
 	},
@@ -55,15 +54,22 @@ var Bomb = Entity.extend({
 			normalized %= (twopi / shield.holes);
 			destroyMe = normalized > (twopi * shield.holePercentage / shield.holes);
 			if (destroyMe) {
-				Sound.play({
-					type: random(0, 1) * 4,
-					from: random(900, 1000),
-					to: random(1200, 1300),
-					duration: 150
-				});
 				shield.combo ++;
 				if ((shield.combo % 3) === 0) {
-					pool.add(new Message(shield.combo + ' COMBO', '255, 0, 255'));
+					pool.add(new Message(shield.combo + ' COMBO', '200, 0, 200'));
+					Sound.play({
+						type: 'triangle',
+						from: 1,
+						to: 1200,
+						duration: 500
+					});
+				} else {
+					Sound.play({
+						type: 'triangle',
+						from: 1,
+						to: 1200,
+						duration: 100
+					});
 				}
 			}
 		}
