@@ -5,7 +5,7 @@ html, body, #c {
 	height: 100%;
 }
 
-#c {
+#c /* canvas */ {
 	position: absolute;
 	top: 0;
 	left: 0;
