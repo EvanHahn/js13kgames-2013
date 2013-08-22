@@ -13,7 +13,7 @@ var Message = Entity.extend({
 			alpha: 0,
 			fadeSpeed: MESSAGE_FADE_IN_SPEED,
 			offset: 0
-		})
+		});
 
 		// destroy me and fade me out after a spell
 		setTimeout(function() {
