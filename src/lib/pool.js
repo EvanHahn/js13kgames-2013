@@ -17,6 +17,11 @@ var Pool = MiniClass.extend({
 		return;
 	},
 
+	empty: function() {
+		this.entities.length = 0;
+		this.length = 0;
+	},
+
 	updateAll: function(dt, context) {
 		for (var i = 0; i < this.length; i ++) {
 			if (!this.entities[i].destroyed) {

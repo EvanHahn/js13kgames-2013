@@ -16,7 +16,8 @@ var Shield = Entity.extend({
 			direction: 0,
 			speed: SHIELD_INITIAL_SPEED,
 			rotationSpeed: 0,
-			combo: 0
+			combo: 0,
+			points: 0
 		});
 
 		// listen to that keyboard
@@ -37,8 +38,31 @@ var Shield = Entity.extend({
 
 	},
 
+	// call when health is less than 0
+	dead: (function() {
+
+		var calledAlready = false;
+
+		return function() {
+			if (!calledAlready) {
+				calledAlready = true;
+				setTimeout(function() {
+					pool.add(new Message('GAME OVER', '255, 0, 0'));
+				}, 1500);
+				setTimeout(function() {
+					mode.set('menu');
+				}, 3000);
+			}
+		};
+
+	})(),
+
 	// each tick
 	update: function(dt) {
+
+		// if I'm dead, go back to the main menu
+		if (this.health <= 0)
+			this.dead();
 
 		// rotate
 		if (this.rotationSpeed)

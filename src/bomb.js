@@ -78,7 +78,7 @@ var Bomb = Entity.extend({
 		if (destroyMe) {
 			this.destroy();
 			if (shield.health > 0) {
-				points += 1;
+				shield.points ++;
 			}
 		}
 

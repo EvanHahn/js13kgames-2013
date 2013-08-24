@@ -3,10 +3,7 @@
 
 var pool = new Pool;
 
-var shield = new Shield;
-pool.add(shield);
-
-var points = 0;
+var shield; // because shield is a global, sorry
 
 var win = window;
 var canvas = document.getElementById('c');
@@ -68,7 +65,7 @@ function update(now) {
 			shadowColor: COLOR_HEART,
 			shadowBlur: LOGO_HEART_RADIUS * screenSize * 2,
 			path: function(context) {
-				context.arc(centerX, centerY, heartRadius, 0, twopi * shield.health, false);
+				context.arc(centerX, centerY, heartRadius, 0, twopi, false);
 			}
 		});
 
@@ -111,12 +108,18 @@ var mode = (function() {
 		set: function(m) {
 			_mode = m;
 			if (m === 'game') {
+
 				Sound.play({
 					type: 'sine',
 					from: 200,
 					to: 1500,
 					duration: 2000
 				});
+
+				pool.empty();
+				shield = new Shield;
+				pool.add(shield);
+
 			}
 		}
 
