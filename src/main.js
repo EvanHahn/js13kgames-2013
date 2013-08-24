@@ -1,8 +1,6 @@
 // initial variables
 // -----------------
 
-var mode = 'menu';
-
 var pool = new Pool;
 
 var shield = new Shield;
@@ -44,7 +42,7 @@ function update(now) {
 	// clear canvas
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (mode === 'game') {
+	if (mode.get() === 'game') {
 
 		// what's dt?
 		var dt = now - lastUpdate;
@@ -62,7 +60,7 @@ function update(now) {
 
 	}
 
-	else if (mode === 'menu') {
+	else if (mode.get() === 'menu') {
 
 		var heartRadius = Math.abs(Math.sin(Date.now() / 1000)) * (screenSize * LOGO_HEART_RADIUS) + (screenSize * LOGO_HEART_RADIUS);
 		context.outline({
@@ -95,5 +93,46 @@ function update(now) {
 	requestAnimationFrame(update);
 
 }
+
+// game mode
+// -------------------
+
+
+var mode = (function() {
+
+	var _mode = 'menu';
+	
+	return {
+
+		get: function() {
+			return _mode;
+		},
+
+		set: function(m) {
+			_mode = m;
+			if (m === 'game') {
+				Sound.play({
+					type: 'sine',
+					from: 200,
+					to: 1500,
+					duration: 2000
+				});
+			}
+		}
+
+	};
+
+})();
+
+// if you hit space...
+// -------------------
+
+addEventListener('keyup', function(evt) {
+	if (mode.get() === 'menu') {
+		if (evt.keyCode === 32) {
+			mode.set('game');
+		}
+	}
+});
 
 update();
