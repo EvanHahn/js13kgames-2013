@@ -29,6 +29,14 @@ var MESSAGE_OUTLINE_SIZE = .01;
 var MESSAGE_FADE_IN_SPEED = .005;
 var MESSAGE_OFFSET_SPEED = .0001;
 
+var LOGO_SIZE = .3; // as % of screen size
+var LOGO_OUTLINE_SIZE = .005; // as % of screen size
+var LOGO_FILL_COLOR = COLOR_WHITE;
+var LOGO_OUTLINE_COLOR = COLOR_WHITE;
+var LOGO_HEART_RADIUS = .05;
+
+var SUBLOGO_SIZE = .05; // as % of screen size
+
 var KEYCODE_LEFT = 37;
 var KEYCODE_RIGHT = 39;
 

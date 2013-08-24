@@ -1,6 +1,8 @@
 // initial variables
 // -----------------
 
+var mode = 'menu';
+
 var pool = new Pool;
 
 var shield = new Shield;
@@ -39,22 +41,55 @@ setBackgroundColor(COLOR_BACKGROUND);
 var lastUpdate = new Date;
 function update(now) {
 
-	// what's dt?
-	var dt = now - lastUpdate;
-	lastUpdate = now;
-
-	// drop new bombs?
-	if ((random(1, BOMB_ORBIT_LIKELIHOOD) === 1) && (shield.health > 0)) {
-		pool.add(new Bomb);
-		Bomb.speed += BOMB_SPEED_STEP;
-		shield.speed += SHIELD_SPEED_STEP;
-	}
-
 	// clear canvas
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
-	// update everyone
-	pool.updateAll(dt, context);
+	if (mode === 'game') {
+
+		// what's dt?
+		var dt = now - lastUpdate;
+		lastUpdate = now;
+
+		// drop new bombs?
+		if ((random(1, BOMB_ORBIT_LIKELIHOOD) === 1) && (shield.health > 0)) {
+			pool.add(new Bomb);
+			Bomb.speed += BOMB_SPEED_STEP;
+			shield.speed += SHIELD_SPEED_STEP;
+		}
+
+		// update everyone
+		pool.updateAll(dt, context);
+
+	}
+
+	else if (mode === 'menu') {
+
+		var heartRadius = Math.abs(Math.sin(Date.now() / 1000)) * (screenSize * LOGO_HEART_RADIUS) + (screenSize * LOGO_HEART_RADIUS);
+		context.outline({
+			fillColor: COLOR_HEART,
+			shadowColor: COLOR_HEART,
+			shadowBlur: LOGO_HEART_RADIUS * screenSize * 2,
+			path: function(context) {
+				context.arc(centerX, centerY, heartRadius, 0, twopi * shield.health, false);
+			}
+		});
+
+		var message = 'ORIGIN';
+		context.font = (LOGO_SIZE * screenSize) + 'px ' + MESSAGE_FONT;
+		context.fillStyle = LOGO_FILL_COLOR;
+		context.textAlign = 'center';
+		context.textBaseline = 'middle';
+		context.shadowBlur = LOGO_OUTLINE_SIZE * screenSize * 5;
+		context.strokeStyle = LOGO_OUTLINE_COLOR;
+		context.lineWidth = LOGO_OUTLINE_SIZE * screenSize;
+		context.fillText(message, centerX, centerY);
+		context.strokeText(message, centerX, centerY);
+
+		context.font = (SUBLOGO_SIZE * screenSize) + 'px ' + MESSAGE_FONT;
+		context.textBaseline = 'top';
+		context.fillText('hit space', centerX, centerY + (LOGO_SIZE * screenSize / 2));
+
+	}
 
 	// start again
 	requestAnimationFrame(update);
