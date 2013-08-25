@@ -101,8 +101,8 @@ var Bomb = Entity.extend({
 
 		var bombSize = BOMB_RADIUS * screenSize;
 
-		var x = centerX + (cos(this.direction) * (this.distance * screenSize));
-		var y = centerY - (sin(this.direction) * (this.distance * screenSize));
+		var x = centerX + (cos(this.direction) * this.distance * screenSize);
+		var y = centerY - (sin(this.direction) * this.distance * screenSize);
 
 		var color = randomColor();
 		context.outline({
