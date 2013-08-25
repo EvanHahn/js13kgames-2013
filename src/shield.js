@@ -109,6 +109,7 @@ var Shield = Entity.extend({
 			shadowColor: COLOR_HEART,
 			shadowBlur: HEART_RADIUS * screenSize * 2,
 			path: function(context) {
+				context.moveTo(centerX, centerY);
 				context.arc(centerX, centerY, heartRadius, 0, twopi * shield.health, false);
 			}
 		});
