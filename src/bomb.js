@@ -77,6 +77,18 @@ var Bomb = Entity.extend({
 		// should I be destroyed?
 		if (destroyMe) {
 			this.destroy();
+			var hypotenuse = (this.distance - BOMB_RADIUS) * screenSize;
+			var x = centerX + (Math.cos(this.direction) * hypotenuse);
+			var y = centerY - (Math.sin(this.direction) * hypotenuse);
+			for (var i = 0; i < 100; i ++) {
+				pool.add(new Particle({
+					x: x,
+					y: y,
+					direction: this.direction + (Math.random() - .5),
+					speed: (Math.random() * .05) + .1,
+					age: 500
+				}));
+			}
 			if (shield.health > 0) {
 				shield.points ++;
 			}
@@ -89,8 +101,8 @@ var Bomb = Entity.extend({
 
 		var particleSize = BOMB_RADIUS * screenSize;
 
-		var x = centerX + (Math.cos(this.direction) * (this.distance * screenSize))
-		var y = centerY - (Math.sin(this.direction) * (this.distance * screenSize))
+		var x = centerX + (Math.cos(this.direction) * (this.distance * screenSize));
+		var y = centerY - (Math.sin(this.direction) * (this.distance * screenSize));
 
 		var color = randomColor();
 		context.outline({
