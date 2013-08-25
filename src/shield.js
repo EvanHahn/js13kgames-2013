@@ -17,7 +17,8 @@ var Shield = Entity.extend({
 			speed: SHIELD_INITIAL_SPEED,
 			rotationSpeed: 0,
 			combo: 0,
-			points: 0
+			points: 0,
+			isDead: false // used to prevent us from executing dead() repeatedly
 		});
 
 		// listen to that keyboard
@@ -39,23 +40,17 @@ var Shield = Entity.extend({
 	},
 
 	// call when health is less than 0
-	dead: (function() {
-
-		var calledAlready = false;
-
-		return function() {
-			if (!calledAlready) {
-				calledAlready = true;
-				setTimeout(function() {
-					pool.add(new Message('GAME OVER', '255, 0, 0'));
-				}, 1500);
-				setTimeout(function() {
-					mode.set('menu');
-				}, 3000);
-			}
-		};
-
-	})(),
+	dead: function() {
+		if (!this.isDead) {
+			this.isDead = true;
+			setTimeout(function() {
+				pool.add(new Message('GAME OVER', '255, 0, 0'));
+			}, 1500);
+			setTimeout(function() {
+				mode.set('menu');
+			}, 3000);
+		}
+	},
 
 	// each tick
 	update: function(dt) {
