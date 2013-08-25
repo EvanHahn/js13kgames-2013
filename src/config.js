@@ -13,7 +13,7 @@ var BOMB_INITIAL_SPEED = .0001; // as % of scren size
 var BOMB_SPEED_STEP = .000001;
 var BOMB_ORBIT_SPEED = .0005;
 var BOMB_DAMAGE = .05;
-var BOMB_ORBIT_LIKELIHOOD = 10; // 1 in X chance for this to happen
+var BOMB_ORBIT_LIKELIHOOD = 100; // 1 in X chance for this to happen
 
 var HEART_RADIUS = .04; // as % of screen size, fluctuates
 var SHIELD_HEALTH = 1;
