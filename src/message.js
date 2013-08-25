@@ -26,7 +26,7 @@ var Message = Entity.extend({
 	},
 
 	update: function(dt) {
-		this.alpha = Math.min(this.alpha + dt * this.fadeSpeed, 1);
+		this.alpha = min(this.alpha + dt * this.fadeSpeed, 1);
 		this.offset += (dt * MESSAGE_OFFSET_SPEED * screenSize);
 	},
 

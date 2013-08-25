@@ -1,12 +1,26 @@
 function noop() {};
 
-function floor(n) {
-	return (n << 0);
-}
+var abs, max, min, sin, cos, floor, random;
+(function(math) {
 
-function random(min, max) {
-	return floor(Math.random() * (max - min)) + floor(min);
-}
+	abs = function() { return math.abs.apply(math, arguments); }
+	max = function() { return math.max.apply(math, arguments); }
+	min = function() { return math.min.apply(math, arguments); }
+	sin = function() { return math.sin.apply(math, arguments); }
+	cos = function() { return math.cos.apply(math, arguments); }
+
+	floor = function(n) {
+		return (n << 0);
+	}
+
+	random = function(min, max) {
+		if (min == null)
+			return math.random();
+		else
+			return floor(math.random() * (max - min)) + floor(min);
+	}
+
+})(Math);
 
 function randomColor() {
 	return 'rgb(' +

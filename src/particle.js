@@ -11,7 +11,7 @@ var Particle = Entity.extend({
 		extend(this, {
 			x: options.x || 0,
 			y: options.y || 0,
-			direction: options.direction || (Math.random() * twopi),
+			direction: options.direction || (random() * twopi),
 			speed: options.speed || 1,
 			color: options.color || randomColor(),
 			age: options.age || 1000
@@ -27,8 +27,8 @@ var Particle = Entity.extend({
 
 	// update
 	update: function(dt) {
-		this.x += Math.cos(this.direction) * this.speed * dt;
-		this.y -= Math.sin(this.direction) * this.speed * dt;
+		this.x += cos(this.direction) * this.speed * dt;
+		this.y -= sin(this.direction) * this.speed * dt;
 	},
 
 	// draw

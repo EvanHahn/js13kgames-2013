@@ -31,9 +31,9 @@ var Shield = Entity.extend({
 		});
 		addEventListener('keyup', function(evt) {
 			if (evt.keyCode === KEYCODE_LEFT) {
-				me.rotationSpeed = Math.max(0, me.rotationSpeed);
+				me.rotationSpeed = max(0, me.rotationSpeed);
 			} else if (evt.keyCode === KEYCODE_RIGHT) {
-				me.rotationSpeed = Math.min(0, me.rotationSpeed);
+				me.rotationSpeed = min(0, me.rotationSpeed);
 			}
 		});
 
@@ -99,9 +99,9 @@ var Shield = Entity.extend({
 
 		// heart
 		// TODO: this is really horrible
-		var eq1 = Math.max(Math.sin(Date.now() * HEART_BEAT_SCALAR), 0) * screenSize * HEART_UPSCALE * HEART_RADIUS;
-		var eq2 = Math.abs(Math.sin(Date.now() * HEART_BEAT_SCALAR * 2)) * screenSize * HEART_UPSCALE * HEART_RADIUS;
-		var heartRadius = Math.max(eq1 + eq2, HEART_RADIUS * screenSize);
+		var eq1 = max(sin(Date.now() * HEART_BEAT_SCALAR), 0) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var eq2 = abs(sin(Date.now() * HEART_BEAT_SCALAR * 2)) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var heartRadius = max(eq1 + eq2, HEART_RADIUS * screenSize);
 		context.outline({
 			fillColor: COLOR_HEART,
 			shadowColor: COLOR_HEART,

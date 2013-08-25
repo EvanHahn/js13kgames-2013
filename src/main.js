@@ -16,7 +16,7 @@ var screenSize, centerX, centerY;
 var updateSizes = function() {
 	var width = win.innerWidth;
 	var height = win.innerHeight;
-	screenSize = Math.min(width, height);
+	screenSize = min(width, height);
 	canvas.width = width;
 	canvas.height = height;
 	centerX = width / 2;
@@ -61,9 +61,9 @@ function update(now) {
 
 		// TODO: make the below LOGO_HEART rather than in-game heart
 		// TODO: this is really horrible
-		var eq1 = Math.max(Math.sin(now * HEART_BEAT_SCALAR), 0) * screenSize * HEART_UPSCALE * HEART_RADIUS;
-		var eq2 = Math.abs(Math.sin(now * HEART_BEAT_SCALAR * 2)) * screenSize * HEART_UPSCALE * HEART_RADIUS;
-		var heartRadius = Math.max(eq1 + eq2, HEART_RADIUS * screenSize);
+		var eq1 = max(sin(now * HEART_BEAT_SCALAR), 0) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var eq2 = abs(sin(now * HEART_BEAT_SCALAR * 2)) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var heartRadius = max(eq1 + eq2, HEART_RADIUS * screenSize);
 
 		context.outline({
 			fillColor: COLOR_BACKGROUND,
