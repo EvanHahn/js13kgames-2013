@@ -10,7 +10,7 @@ var COLOR_OUTLINE = COLOR_WHITE;
 
 var BOMB_RADIUS = .03; // as % of scren size
 var BOMB_INITIAL_SPEED = .0001; // as % of screen size
-var BOMB_SPEED_STEP = .000001;
+var BOMB_SPEED_STEP = .000003;
 var BOMB_ORBIT_SPEED = .0005;
 var BOMB_DAMAGE = .05;
 var BOMB_ORBIT_LIKELIHOOD = 100; // 1 in X chance for this to happen
@@ -21,7 +21,7 @@ var SHIELD_HOLE_COUNT = 3;
 var SHIELD_HOLE_PERCENTAGE = .5;
 var SHIELD_RADIUS = .25;
 var SHIELD_INITIAL_SPEED = .002;
-var SHIELD_SPEED_STEP = .00001;
+var SHIELD_SPEED_STEP = .00002;
 
 var MESSAGE_SIZE = .1; // as % of screen size
 var MESSAGE_FONT = 'Impact, sans-serif';
