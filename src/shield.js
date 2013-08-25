@@ -80,7 +80,7 @@ var Shield = Entity.extend({
 			outlineColor: COLOR_CORE_MEMBRANE,
 			outlineWidth: 2,
 			path: function() {
-				context.arc(centerX, centerY, shieldRadius, 0, twopi, false);
+				context.arc(centerX, centerY, floor(shieldRadius), 0, twopi, false);
 			}
 		});
 		for (var i = 0; i < this.holes; i ++) {
@@ -92,7 +92,7 @@ var Shield = Entity.extend({
 				shadowColor: COLOR_OUTLINE,
 				shadowBlur: shieldRadius / 10,
 				path: function(context) {
-					context.arc(centerX, centerY, shieldRadius, startAngle, endAngle, false);
+					context.arc(centerX, centerY, floor(shieldRadius), startAngle, endAngle, false);
 				}
 			});
 		}
@@ -108,7 +108,7 @@ var Shield = Entity.extend({
 			shadowBlur: HEART_RADIUS * screenSize * 2,
 			path: function(context) {
 				context.moveTo(centerX, centerY);
-				context.arc(centerX, centerY, heartRadius, 0, twopi * shield.health, false);
+				context.arc(centerX, centerY, floor(heartRadius), 0, twopi * shield.health, false);
 			}
 		});
 

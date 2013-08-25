@@ -110,7 +110,10 @@ var Bomb = Entity.extend({
 			shadowColor: color,
 			shadowBlur: particleSize * 1.5,
 			path: function(context) {
-				context.arc(x, y, particleSize, 0, twopi, false);
+				context.arc(
+					floor(x), floor(y), floor(particleSize),
+					0, twopi, false
+				);
 			}
 		});
 

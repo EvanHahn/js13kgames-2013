@@ -19,8 +19,8 @@ var updateSizes = function() {
 	screenSize = min(width, height);
 	canvas.width = width;
 	canvas.height = height;
-	centerX = width / 2;
-	centerY = height / 2;
+	centerX = floor(width / 2);
+	centerY = floor(height / 2);
 };
 win.onresize = updateSizes;
 updateSizes();
