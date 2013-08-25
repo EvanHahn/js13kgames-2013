@@ -99,7 +99,7 @@ var Bomb = Entity.extend({
 	// draw me
 	draw: function(context) {
 
-		var particleSize = BOMB_RADIUS * screenSize;
+		var bombSize = BOMB_RADIUS * screenSize;
 
 		var x = centerX + (cos(this.direction) * (this.distance * screenSize));
 		var y = centerY - (sin(this.direction) * (this.distance * screenSize));
@@ -108,10 +108,10 @@ var Bomb = Entity.extend({
 		context.outline({
 			fillColor: color,
 			shadowColor: color,
-			shadowBlur: particleSize * 1.5,
+			shadowBlur: bombSize * 1.5,
 			path: function(context) {
 				context.arc(
-					floor(x), floor(y), floor(particleSize),
+					floor(x), floor(y), floor(bombSize),
 					0, twopi, false
 				);
 			}
