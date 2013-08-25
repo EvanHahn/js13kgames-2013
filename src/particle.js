@@ -35,10 +35,9 @@ var Particle = Entity.extend({
 	draw: function(context) {
 		var x = floor(this.x);
 		var y = floor(this.y);
-		var size = floor(PARTICLE_SIZE * screenSize);
 		context.shadowBlur = 0;
 		context.fillStyle = this.color;
-		context.fillRect(x, y, size, size);
+		context.fillRect(x, y, 1, 1);
 	}
 
 });

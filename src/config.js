@@ -44,7 +44,5 @@ var SUBLOGO_SIZE = .05; // as % of screen size
 var KEYCODE_LEFT = 37;
 var KEYCODE_RIGHT = 39;
 
-var PARTICLE_SIZE = .005; // % of screen size
-
 var pi = Math.PI;
 var twopi = pi * 2;
