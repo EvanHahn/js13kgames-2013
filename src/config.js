@@ -16,6 +16,9 @@ var BOMB_DAMAGE = .05;
 var BOMB_ORBIT_LIKELIHOOD = 100; // 1 in X chance for this to happen
 
 var HEART_RADIUS = .04; // as % of screen size, fluctuates
+var HEART_UPSCALE = 1.1; // how much bigger can it get when it's beating?
+var HEART_BEAT_SCALAR = .001;
+
 var SHIELD_HEALTH = 1;
 var SHIELD_HOLE_COUNT = 3;
 var SHIELD_HOLE_PERCENTAGE = .5;
@@ -31,8 +34,9 @@ var MESSAGE_OFFSET_SPEED = .0001;
 
 var LOGO_SIZE = .3; // as % of screen size
 var LOGO_OUTLINE_SIZE = .005; // as % of screen size
-var LOGO_FILL_COLOR = COLOR_WHITE;
-var LOGO_OUTLINE_COLOR = COLOR_WHITE;
+var LOGO_FILL_COLOR = 'transparent';
+var LOGO_OUTLINE_COLOR = COLOR_HEART;
+var LOGO_SHADOW_COLOR = COLOR_BLACK;
 var LOGO_HEART_RADIUS = .05;
 
 var SUBLOGO_SIZE = .05; // as % of screen size

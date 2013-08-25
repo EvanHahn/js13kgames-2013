@@ -98,7 +98,10 @@ var Shield = Entity.extend({
 		}
 
 		// heart
-		var heartRadius = Math.abs(Math.sin(Date.now() / 1000)) * (screenSize * HEART_RADIUS) + (screenSize * HEART_RADIUS);
+		// TODO: this is really horrible
+		var eq1 = Math.max(Math.sin(Date.now() * HEART_BEAT_SCALAR), 0) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var eq2 = Math.abs(Math.sin(Date.now() * HEART_BEAT_SCALAR * 2)) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var heartRadius = Math.max(eq1 + eq2, HEART_RADIUS * screenSize);
 		context.outline({
 			fillColor: COLOR_HEART,
 			shadowColor: COLOR_HEART,

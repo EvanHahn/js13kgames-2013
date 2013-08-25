@@ -39,11 +39,11 @@ function update(now) {
 	// clear canvas
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
-	if (mode.get() === 'game') {
+	// what's dt?
+	var dt = now - lastUpdate;
+	lastUpdate = now;
 
-		// what's dt?
-		var dt = now - lastUpdate;
-		lastUpdate = now;
+	if (mode.get() === 'game') {
 
 		// drop new bombs?
 		if ((random(1, BOMB_ORBIT_LIKELIHOOD) === 1) && (shield.health > 0)) {
@@ -59,9 +59,14 @@ function update(now) {
 
 	else if (mode.get() === 'menu') {
 
-		var heartRadius = Math.abs(Math.sin(Date.now() / 1000)) * (screenSize * LOGO_HEART_RADIUS) + (screenSize * LOGO_HEART_RADIUS);
+		// TODO: make the below LOGO_HEART rather than in-game heart
+		// TODO: this is really horrible
+		var eq1 = Math.max(Math.sin(now * HEART_BEAT_SCALAR), 0) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var eq2 = Math.abs(Math.sin(now * HEART_BEAT_SCALAR * 2)) * screenSize * HEART_UPSCALE * HEART_RADIUS;
+		var heartRadius = Math.max(eq1 + eq2, HEART_RADIUS * screenSize);
+
 		context.outline({
-			fillColor: COLOR_HEART,
+			fillColor: COLOR_BACKGROUND,
 			shadowColor: COLOR_HEART,
 			shadowBlur: LOGO_HEART_RADIUS * screenSize * 2,
 			path: function(context) {
@@ -75,6 +80,7 @@ function update(now) {
 		context.textAlign = 'center';
 		context.textBaseline = 'middle';
 		context.shadowBlur = LOGO_OUTLINE_SIZE * screenSize * 5;
+		context.shadowColor = LOGO_SHADOW_COLOR;
 		context.strokeStyle = LOGO_OUTLINE_COLOR;
 		context.lineWidth = LOGO_OUTLINE_SIZE * screenSize;
 		context.fillText(message, centerX, centerY);
