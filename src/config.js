@@ -40,6 +40,7 @@ var LOGO_SHADOW_COLOR = COLOR_BLACK;
 var LOGO_HEART_RADIUS = .05;
 
 var SUBLOGO_SIZE = .05; // as % of screen size
+var SUBLOGO_FILL_COLOR = 'red';
 
 var KEYCODE_LEFT = 37;
 var KEYCODE_RIGHT = 39;

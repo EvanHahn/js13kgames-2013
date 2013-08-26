@@ -35,9 +35,14 @@ var Particle = Entity.extend({
 	draw: function(context) {
 		var x = floor(this.x);
 		var y = floor(this.y);
-		context.shadowBlur = 0;
-		context.fillStyle = this.color;
-		context.fillRect(x, y, 1, 1);
+		context.outline({
+			fillColor: this.color,
+			shadowColor: this.color,
+			shadowBlur: 10,
+			path: function(context) {
+				context.arc(x, y, 1, 0, twopi, false);
+			}
+		});
 	}
 
 });

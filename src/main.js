@@ -87,6 +87,7 @@ function update(now) {
 		context.strokeText(message, centerX, centerY);
 
 		context.font = (SUBLOGO_SIZE * screenSize) + 'px ' + MESSAGE_FONT;
+		context.fillStyle = SUBLOGO_FILL_COLOR;
 		context.textBaseline = 'top';
 		context.fillText('hit space', centerX, centerY + (LOGO_SIZE * screenSize / 2));
 
