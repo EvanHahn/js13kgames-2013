@@ -55,22 +55,10 @@ var Bomb = Entity.extend({
 			destroyMe = normalized > (twopi * shield.holePercentage / shield.holes);
 			if (destroyMe) {
 				shield.combo ++;
-				if ((shield.combo % 3) === 0) {
+				if ((shield.combo % 3) === 0)
 					pool.add(new Message(shield.combo + ' COMBO', '200, 0, 200'));
-					Sound.play({
-						type: 'triangle',
-						from: 1,
-						to: 1200,
-						duration: 500
-					});
-				} else {
-					Sound.play({
-						type: 'triangle',
-						from: 1,
-						to: 1200,
-						duration: 100
-					});
-				}
+				Sound.play({ type: 3, from: 200, to: 1000, duration: 100 });
+				Sound.play({ type: 0, from: 1000, to: 200, duration: 100 });
 			}
 		}
 
