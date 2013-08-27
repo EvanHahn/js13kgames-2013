@@ -127,6 +127,8 @@ var mode = (function() {
 				shield = new Shield;
 				pool.add(shield);
 
+				Bomb.speed = BOMB_INITIAL_SPEED;
+
 			}
 		}
 

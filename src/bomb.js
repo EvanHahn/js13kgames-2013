@@ -108,5 +108,3 @@ var Bomb = Entity.extend({
 	}
 
 });
-
-Bomb.speed = BOMB_INITIAL_SPEED;
