@@ -9,11 +9,15 @@ var win = window;
 var canvas = document.getElementById('c');
 var context = canvas.getContext('2d');
 
+var postGame = document.getElementById('p');
+
+var scores = document.getElementById('s');
+
 // when we resize, change screen-proportion variables
 // --------------------------------------------------
 
 var screenSize, centerX, centerY;
-var updateSizes = function() {
+function updateSizes() {
 	var width = win.innerWidth;
 	var height = win.innerHeight;
 	screenSize = min(width, height);
@@ -24,6 +28,36 @@ var updateSizes = function() {
 };
 win.onresize = updateSizes;
 updateSizes();
+
+// update high scores
+// ------------------
+
+var highScores = local.get('scores');
+if (highScores == null) {
+	highScores = [];
+}
+
+function addScore(score, bestCombo) {
+	highScores.push([score, bestCombo]);
+	highScores.sort(function(a, b) {
+		return (a[0] > b[0]) ? -1 : 1;
+	});
+	highScores.length = min(highScores.length, MAX_HIGHSCORES);
+	local.set('scores', highScores);
+}
+
+function drawScores() {
+	var result = '<tr><th></th><th>SCORE</th><th>BEST COMBO</th></tr>';
+	for (var i = 0; i < MAX_HIGHSCORES; i ++) {
+		var score = highScores[i] || ['-', '-'];
+		result += '<tr>';
+		result += '<td>' + (i + 1) + '</td>';
+		result += '<td>' + score[0] + '</td>';
+		result += '<td>' + score[1] + '</td>';
+		result += '</tr>';
+	}
+	scores.innerHTML = result;
+}
 
 // initial setup
 // -------------
@@ -57,7 +91,7 @@ function update(now) {
 
 	}
 
-	else if (mode.get() === 'menu') {
+	else { // menu or gameover
 
 		// TODO: make the below LOGO_HEART rather than in-game heart
 		// TODO: this is really horrible
@@ -73,6 +107,10 @@ function update(now) {
 				context.arc(centerX, centerY, heartRadius, 0, twopi, false);
 			}
 		});
+
+	}
+
+	if (mode.get() === 'menu') {
 
 		var message = 'ORIGIN';
 		context.font = (LOGO_SIZE * screenSize) + 'px ' + MESSAGE_FONT;
@@ -99,13 +137,12 @@ function update(now) {
 }
 
 // game mode
-// -------------------
-
+// ---------
 
 var mode = (function() {
 
-	var _mode = 'menu';
-	
+	var _mode;
+
 	return {
 
 		get: function() {
@@ -129,6 +166,17 @@ var mode = (function() {
 
 				Bomb.speed = BOMB_INITIAL_SPEED;
 
+				postGame.style.display = 'none';
+
+			} else if (m === 'gameover') {
+
+				drawScores();
+				postGame.style.display = 'table';
+
+			} else if (m === 'menu') {
+
+				postGame.style.display = 'none';
+
 			}
 		}
 
@@ -136,11 +184,13 @@ var mode = (function() {
 
 })();
 
+mode.set('menu');
+
 // if you hit space...
 // -------------------
 
 addEventListener('keyup', function(evt) {
-	if (mode.get() === 'menu') {
+	if ((mode.get() === 'menu') || (mode.get() === 'gameover')) {
 		if (evt.keyCode === 32) {
 			mode.set('game');
 		}

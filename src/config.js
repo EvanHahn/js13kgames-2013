@@ -45,5 +45,7 @@ var SUBLOGO_FILL_COLOR = 'red';
 var KEYCODE_LEFT = 37;
 var KEYCODE_RIGHT = 39;
 
+var MAX_HIGHSCORES = 10;
+
 var pi = Math.PI;
 var twopi = pi * 2;

@@ -41,7 +41,8 @@ var Bomb = Entity.extend({
 			shield.health -= BOMB_DAMAGE;
 			destroyMe = true;
 			Sound.play(BOOM_DATA);
-			pool.add(new Message('AW SHIT', '255, 0, 0'));
+			if (shield.health > 0)
+				pool.add(new Message('AW SHIT', '255, 0, 0'));
 			shield.combo = 0;
 		}
 
@@ -55,6 +56,8 @@ var Bomb = Entity.extend({
 			destroyMe = normalized > (twopi * shield.holePercentage / shield.holes);
 			if (destroyMe) {
 				shield.combo ++;
+				if (shield.combo > shield.bestCombo)
+					shield.bestCombo = shield.combo;
 				if ((shield.combo % 3) === 0)
 					pool.add(new Message(shield.combo + ' COMBO', '200, 0, 200'));
 				Sound.play({ type: 3, from: 200, to: 1000, duration: 100 });

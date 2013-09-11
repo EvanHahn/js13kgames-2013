@@ -1,12 +1,80 @@
-html, body, #c {
+* {
 	margin: 0;
 	padding: 0;
-	width: 100%;
-	height: 100%;
 }
 
-#c /* canvas */ {
+html, body, #c, #p, #i {
+	width: 100%;
+	height: 100%;
+	font-family: sans-serif;
+}
+
+::selection {
+	background: transparent;
+}
+
+::-moz-selection {
+	background: transparent;
+}
+
+#c, #p /* canvas */ {
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+#p /* postgame */ {
+	display: table;
+	letter-spacing: .1em;
+	color: #fff;
+	cursor: default;
+}
+
+#i /* postgame-inner */ {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#p h1 {
+	font-size: 5em;
+	text-shadow: 0 0 10px rgb(255, 0, 40);
+	font-family: Impact, sans-serif;
+}
+
+#s /* high scores table */ {
+	margin: 1em auto;
+	width: 500px;
+	color: #fff;
+	border-collapse: collapse;
+}
+
+#s th {
+	font-size: 2em;
+}
+
+#s td {
+	font-size: 1.5em;
+}
+
+#s tr {
+	border-top: 1px solid #fff;
+}
+
+#s tr:first-child {
+	border-top: 0;
+}
+
+#p a, #p span {
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 1.5em;
+	text-shadow: 0 0 5px rgb(255, 0, 40);
+}
+
+#p a {
+	color: rgb(255, 0, 40);
+	display: none; /* temporary */
 }
