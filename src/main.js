@@ -165,7 +165,7 @@ var mode = (function() {
 				pool.add(shield);
 				pool.add(new Message('PROTECT THE HEART!', '0, 128, 255'));
 				setTimeout(function() {
-				pool.add(new Message('USE ARROW KEYS', '0, 128, 255'));
+					pool.add(new Message('USE ARROW KEYS', '0, 128, 255'));
 				}, 1200);
 
 				Bomb.speed = BOMB_INITIAL_SPEED;
